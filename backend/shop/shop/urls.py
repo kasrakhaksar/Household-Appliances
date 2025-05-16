@@ -18,19 +18,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path , include
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
+from api_shop.views import ProductViewSet
 from django.conf.urls.static import static
-import settings
+import shop.settings
 
 
 
-router = routers.DefaultRouter()
-# router.register(r'users', UserViewSet , basename='user')
+router = DefaultRouter()
+router.register(r'product', ProductViewSet , basename='product')
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
     path('', include(router.urls))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(shop.settings.MEDIA_URL, document_root=shop.settings.MEDIA_ROOT)

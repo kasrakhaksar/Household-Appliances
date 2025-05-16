@@ -1,7 +1,7 @@
 <template>
   <div class="container">
 
-    <UserCard/>
+    <ProductHome/>
 
   </div>
 </template>
@@ -9,13 +9,15 @@
 
 
 <script>
-import UserCard from './components/UserCard.vue'
+
+import ProductHome from './components/ProductHome.vue';
 
 export default {
     name: 'App',
     components: {
-      UserCard
-    }}
+      ProductHome
+}}
+
 </script>
 
 <style scoped>
