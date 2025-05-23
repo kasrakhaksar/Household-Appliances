@@ -19,7 +19,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from rest_framework.routers import DefaultRouter
-from api_shop.views import ProductViewSet
+from api_shop.views import ProductViewSet , ProductCategoryListView
 from django.conf.urls.static import static
 import shop.settings
 
@@ -27,6 +27,7 @@ import shop.settings
 
 router = DefaultRouter()
 router.register(r'product', ProductViewSet , basename='product')
+router.register(r'products/categories', ProductCategoryListView , basename='categories')
 
 
 

@@ -1,27 +1,20 @@
 <template>
-  <div class="container">
 
-    <ProductHome/>
+    <HomePage/>
 
-  </div>
 </template>
 
 
 
 <script>
 
-import ProductHome from './components/ProductHome.vue';
+  import HomePage from './components/HomePage.vue';
 
-export default {
-    name: 'App',
-    components: {
-      ProductHome
-}}
+  export default {
+      name: 'App',
+      components: {
+        HomePage
+  }}
 
 </script>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
-</style>
