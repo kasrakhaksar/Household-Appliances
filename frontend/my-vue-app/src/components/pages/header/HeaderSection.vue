@@ -1,6 +1,6 @@
 <template>
   <header class="navbar">
-    <div class="navbar__logo">HomeAppliances</div>
+    <div class="navbar__logo"><router-link to="/">Household Appliances</router-link></div>
     <nav class="navbar__menu">
       <ul>
         <li class="has-mega">
@@ -23,7 +23,7 @@
             <p>Loading categories...</p>
           </div>
         </li>
-        <li><a href="#">About Us</a></li>
+        <li><router-link to="/aboutus" class="nav-link">About Us</router-link></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
@@ -50,16 +50,16 @@ onMounted(async () => {
   }
 })
 </script>
+
+
 <style scoped>
 .navbar {
-  background-color: #f0f6fc; 
   border-bottom: 1px solid #669fef;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
   position: relative;
   align-items: center;
-  font-family: "Segoe UI", sans-serif;
   direction: ltr;
 }
 
@@ -68,9 +68,15 @@ onMounted(async () => {
   font-weight: bold;
   color: #003f88;
   animation: blinkSoft 2.5s ease-in-out infinite;
+
 }
 
-/* Keyframe for gentle blink */
+.navbar__logo a {
+  text-decoration: none;
+  color: inherit; 
+}
+
+
 @keyframes blinkSoft {
   0%, 100% {
     opacity: 1;

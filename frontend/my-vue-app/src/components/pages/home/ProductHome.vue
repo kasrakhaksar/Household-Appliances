@@ -51,73 +51,63 @@
 
 <style scoped>
 .product-list {
-  padding: 40px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  background-color: #f0f6fc; 
-  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 h1 {
-  grid-column: 1 / -1;
   text-align: center;
-  font-size: 2.2rem;
-  color: #003f88; 
-  margin-bottom: 30px;
-  font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 .product-card {
-  background-color: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0, 63, 136, 0.1); /* Soft navy shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem;
+  flex: 1 1 300px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #cbe2ff;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 63, 136, 0.15);
+  transform: translateY(-5px);
 }
 
 .product-image {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-bottom: 2px solid #e0f0ff;
+  max-width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.product-list > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .product-card h2 {
-  font-size: 1.3rem;
-  color: #002b5b;
-  margin: 15px 15px 5px;
-  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .product-card p {
   font-size: 0.95rem;
-  color: #0a2540;
-  margin: 4px 15px;
-  line-height: 1.4;
+  margin: 0.25rem 0;
+  text-align: center;
 }
 
-.product-card p:last-of-type {
-  margin-bottom: 15px;
-}
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.6rem;
-  }
-  .product-card h2 {
-    font-size: 1.1rem;
-  }
-  .product-card p {
-    font-size: 0.88rem;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-card {
+    flex: 1 1 100%;
   }
 }
 
