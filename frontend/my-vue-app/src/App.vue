@@ -13,8 +13,8 @@
 
 
 <script>
-  import HeaderSection from './components/pages/header/HeaderSection.vue';
-  import FooterSection from './components/pages/footer/FooterSection.vue';
+  import HeaderSection from './components/pages/layout/HeaderSection.vue';
+  import FooterSection from './components/pages/layout/FooterSection.vue';
 
   export default {
       name: 'App',

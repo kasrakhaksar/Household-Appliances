@@ -6,9 +6,7 @@
         <div v-for="product in products" :key="product.id" class="product-card">
           <img :src="product.image" :alt="product.name" class="product-image" />
           <h2>{{ product.name }}</h2>
-          <p>{{ product.description.slice(0, 50) }}{{ product.description.length > 50 ? '...' : '' }}</p>
           <p>price: {{ product.price }} $</p>
-          <p>stock: {{ product.stock }}</p>
           <p>brand: {{ product.brand }}</p>
           <p>category: {{ product.category }}</p>
         </div>
@@ -93,13 +91,13 @@ h1 {
 }
 
 .product-card h2 {
-  font-size: 1.2rem;
+  font-size: 15px;
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 .product-card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin: 0.25rem 0;
   text-align: center;
 }

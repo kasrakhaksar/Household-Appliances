@@ -24,9 +24,9 @@
             width="100%"
             height="auto"
             controls
-            poster="https://uiparadox.co.uk/templates/powerex/assets/media/about/about-image-1.png">
+            :poster="require('@/assets/home_media/poster-video.png')">
             
-            <source src="https://uiparadox.co.uk/templates/powerex/assets/media/store.mp4" type="video/mp4" />
+            <source :src="require('@/assets/home_media/video.mp4')" type="video/mp4" />
             Your browser does not support the video tag.
             </video>
         </div>
