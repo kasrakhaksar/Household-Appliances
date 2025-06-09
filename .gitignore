@@ -1,4 +1,6 @@
 project
 node_modules
 dist
+__pycache__
+migrations
 *.bat

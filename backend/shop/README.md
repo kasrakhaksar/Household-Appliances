@@ -32,8 +32,5 @@ python manage.py migrate
 
 ### Customize configuration
 
-<<<<<<< HEAD
-See [Django REST framework Docs](https://www.django-rest-framework.org/)
-=======
+
 See [Django REST framework Docs](https://www.django-rest-framework.org/).
->>>>>>> 67787dd9e037a2363a0f957a4f6f40574aafc3d3
