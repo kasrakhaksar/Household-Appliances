@@ -31,7 +31,7 @@
     <div class="navbar__icons">
       <span class="icon">🔍</span>
       <span class="icon">🛒</span>
-      <span class="icon">👤</span>
+      <span><router-link to="/auth" class="icon">👤</router-link></span>
     </div>
   </header>
 </template>

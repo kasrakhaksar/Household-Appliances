@@ -1,13 +1,9 @@
 <template>
-
-<body>
-  <HeaderSection/>
-  <router-view />
-
-  <FooterSection/>
-
-</body>
-  
+  <div>
+    <HeaderSection v-if="$route?.meta?.layout !== 'auth'" />
+    <router-view />
+    <FooterSection v-if="$route?.meta?.layout !== 'auth'" />
+  </div>
 </template>
 
 
