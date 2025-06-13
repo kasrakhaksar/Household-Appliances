@@ -19,9 +19,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from rest_framework.routers import DefaultRouter
-from api_shop.views import ProductViewSet , ProductCategoryListView
+from api_shop.views import ProductViewSet , ProductCategoryListView , SignupView
 from django.conf.urls.static import static
 import shop.settings
+from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView , TokenRefreshView
 
 
 
@@ -33,5 +35,8 @@ router.register(r'products/categories', ProductCategoryListView , basename='cate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/signup/', SignupView.as_view(), name='signup'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('', include(router.urls))
 ] + static(shop.settings.MEDIA_URL, document_root=shop.settings.MEDIA_ROOT)

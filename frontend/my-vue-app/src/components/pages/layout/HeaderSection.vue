@@ -31,7 +31,10 @@
     <div class="navbar__icons">
       <span class="icon">🔍</span>
       <span class="icon">🛒</span>
-      <span><router-link to="/auth" class="icon">👤</router-link></span>
+      <span>
+        <router-link v-if="!isLoggedIn" to="/auth" class="icon">👤</router-link>
+        <button v-else @click="logout" class="icon logout-btn">🚪</button>
+      </span>
     </div>
   </header>
 </template>
@@ -39,21 +42,40 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const categories = ref([])
+const router = useRouter()
+const isLoggedIn = ref(false)
 
 onMounted(async () => {
   try {
     const res = await axios.get('http://localhost:8000/products/categories/')
     categories.value = res.data
+    isLoggedIn.value = !!localStorage.getItem('access_token')
   } catch (error) {
     console.error('Error fetching categories:', error)
   }
 })
+
+
+
+
+
+const logout = () => {
+  localStorage.removeItem('access_token')
+  localStorage.removeItem('refresh_token')
+  isLoggedIn.value = false
+  router.push('/auth')
+}
+
 </script>
 
 
 <style scoped>
+
+
+
 .navbar {
   border-bottom: 1px solid #669fef;
   display: flex;
@@ -63,6 +85,7 @@ onMounted(async () => {
   align-items: center;
   direction: ltr;
 }
+
 
 .navbar__logo {
   font-size: 1.7rem;
@@ -214,6 +237,14 @@ onMounted(async () => {
 
   .navbar__icons {
     margin-left: 1rem;
+  }
+
+
+  .logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
   }
 }
 </style>
