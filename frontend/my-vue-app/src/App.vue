@@ -32,7 +32,7 @@
     font-display: swap;
   }
 
-  body {
+  div {
     font-family: 'ny-font';
   }
 

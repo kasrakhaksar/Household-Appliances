@@ -19,17 +19,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from rest_framework.routers import DefaultRouter
-from api_shop.views import ProductViewSet , ProductCategoryListView , SignupView
+from api_shop.views import  SignupView
+from product.views import ProductViewSet , ProductCategoryListView
+from blog.views import LastBlogViewSet
 from django.conf.urls.static import static
 import shop.settings
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView , TokenRefreshView
 
-
-
 router = DefaultRouter()
+
+
 router.register(r'product', ProductViewSet , basename='product')
 router.register(r'products/categories', ProductCategoryListView , basename='categories')
+
+router.register(r'blog/latest', LastBlogViewSet , basename='latest blog')
 
 
 

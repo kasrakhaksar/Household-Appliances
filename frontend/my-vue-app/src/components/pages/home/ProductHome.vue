@@ -1,6 +1,5 @@
 <template>
     <div class="product-list">
-      <h1>Products</h1>
       <div v-if="loading">loading</div>
       <div v-else>
         <div v-for="product in products" :key="product.id" class="product-card">
@@ -54,10 +53,7 @@
   padding: 1rem;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+
 
 .product-card {
   background: #fff;
