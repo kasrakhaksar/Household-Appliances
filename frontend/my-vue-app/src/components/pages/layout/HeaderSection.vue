@@ -33,7 +33,7 @@
       <span class="icon">🛒</span>
       <span>
         <router-link v-if="!isLoggedIn" to="/auth" class="icon">👤</router-link>
-        <button v-else @click="logout" class="icon logout-btn">🚪</button>
+        <a v-else @click="logout" class="icon logout-btn">🚪</a>
       </span>
     </div>
   </header>

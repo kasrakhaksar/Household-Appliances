@@ -16,7 +16,15 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        return Product.objects.filter(is_active=True).order_by('-created_at')
+        queryset = Product.objects.filter(is_active=True).order_by('-created_at')
+        count = self.request.query_params.get('count')
+        if count is not None:
+            try:
+                count = int(count)
+                queryset = queryset[:count]
+            except ValueError:
+                pass
+        return queryset
 
     def list(self, request, *args, **kwargs):
         redis_conn = get_redis_connection("default")

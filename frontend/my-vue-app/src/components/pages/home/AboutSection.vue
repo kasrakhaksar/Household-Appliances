@@ -37,7 +37,6 @@ export default {
 
 <style scoped>
 .about-section {
-  background-color: #e3f2fd;
   padding: 3rem 1.5rem;
   border-radius: 12px;
   margin-top: 2rem;

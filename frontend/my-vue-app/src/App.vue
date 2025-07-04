@@ -47,13 +47,13 @@ export default {
 
 
 <style scoped>
-@font-face {
-  font-family: 'ny-font';
-  src: url('@/assets/fonts/my-font.woff2') format('woff2');
-  font-display: swap;
-}
+  @font-face {
+    font-family: 'ny-font';
+    src: url('@/assets/fonts/my-font.woff2') format('woff2');
+    font-display: swap;
+  }
 
-div {
-  font-family: 'ny-font';
-}
+  div {
+    font-family: 'ny-font';
+  }
 </style>

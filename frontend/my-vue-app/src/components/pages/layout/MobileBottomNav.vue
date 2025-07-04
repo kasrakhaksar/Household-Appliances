@@ -12,7 +12,7 @@
         <span>🛒</span>
         <small>Cart</small>
       </router-link>
-      <router-link to="/profile" class="nav-item">
+      <router-link to="/auth" class="nav-item">
         <span>👤</span>
         <small>Account</small>
       </router-link>
@@ -25,7 +25,10 @@
   };
   </script>
   
-  <style scoped>
+<style scoped>
+
+
+
   .mobile-bottom-nav {
     display: none;
   }
@@ -61,5 +64,7 @@
       color: #00b4d8;
     }
   }
+
+
   </style>
   

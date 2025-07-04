@@ -21,7 +21,7 @@ from django.urls import path , include
 from rest_framework.routers import DefaultRouter
 from api_shop.views import  SignupView
 from product.views import ProductViewSet , ProductCategoryListView
-from blog.views import LastBlogViewSet
+from blog.views import BlogViewSet
 from django.conf.urls.static import static
 import shop.settings
 from django.urls import path
@@ -32,8 +32,7 @@ router = DefaultRouter()
 
 router.register(r'product', ProductViewSet , basename='product')
 router.register(r'products/categories', ProductCategoryListView , basename='categories')
-
-router.register(r'blog/latest', LastBlogViewSet , basename='latest blog')
+router.register(r'blog', BlogViewSet , basename='blog')
 
 
 

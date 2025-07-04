@@ -9,41 +9,42 @@
           <div v-for="blog in blogs" :key="blog.id" class="blog-card">
             <h3>{{ blog.title }}</h3>
             <p class="excerpt">{{ blog.excerpt }}</p>
-            <router-link :to="`/blog/${blog.slug}`" class="read-more">Read More</router-link>
+            <router-link :to="`/blog/${blog.id}/`" class="read-more">Read More</router-link>
           </div>
         </div>
         <p v-else>Loading...</p>
       </section>
     </section>
-  </template>
+</template>
   
 
 
   
   
-  <script setup>
-    import { ref, onMounted } from 'vue'
-    import axios from 'axios'
+<script>
+  import BlogAPI from './api/BlogsApi'
   
-    const blogs = ref([])
-  
-    const fetchLatestBlogs = async () => {
+  export default {
+    name: 'BlogList',
+    data() {
+      return {
+        blogs: [],
+      };
+    },
+    async mounted() {
       try {
-        const response = await axios.get('http://localhost:8000/blog/latest/')
-        blogs.value = response.data
+        this.blogs = await BlogAPI.getHomeBlog(1);
+        console.log(this.blogs);
       } catch (error) {
-        console.error('Error fetching blogs:', error)
+        console.error('❌ دریافت بلاگ‌ها با خطا مواجه شد:', error);
       }
-    }
-  
-    onMounted(() => {
-      fetchLatestBlogs()
-    })
-  </script>
+    },
+  };
+</script>
   
   
   
-  <style scoped>
+<style scoped>
   
   .extra-section {
     padding: 2rem 1rem;

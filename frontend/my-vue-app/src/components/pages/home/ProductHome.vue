@@ -19,7 +19,7 @@
 
 
 <script>
-  import ProductAPI from '../home/api/ProductAPI';
+  import ProductAPI from './api/ProductAPI';
 
   export default {
     name: 'ProductList',
@@ -30,14 +30,14 @@
       };
     },
     async mounted() {
-      try {
-        this.products = await ProductAPI.getAllProducts();
-      } catch (error) {
-        console.error('❌ دریافت اطلاعات محصولات با خطا مواجه شد:', error);
-      } finally {
-        this.loading = false;
-      }
-    },
+    try {
+      this.products = await ProductAPI.getHomeProducts(4);
+    } catch (error) {
+      console.error('❌ دریافت اطلاعات محصولات با خطا مواجه شد:', error);
+    } finally {
+      this.loading = false;
+    }
+  }
   };
 </script>
   

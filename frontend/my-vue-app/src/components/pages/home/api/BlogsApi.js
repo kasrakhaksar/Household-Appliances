@@ -2,11 +2,10 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8000';
 
-
-class ProductAPI {
-  static async getAllProducts() {
+class BlogAPI {
+  static async getAllBlogs() {
     try {
-      const response = await axios.get(`${BASE_URL}/product/`);
+      const response = await axios.get(`${BASE_URL}/blog/`);
       return response.data;
     } catch (error) {
       console.error('❌', error);
@@ -14,9 +13,9 @@ class ProductAPI {
     }
   }
 
-  static async getProductById(id) {
+  static async getBlogById(id) {
     try {
-      const response = await axios.get(`${BASE_URL}/product/${id}/`);
+      const response = await axios.get(`${BASE_URL}/blog/${id}/`);
       return response.data;
     } catch (error) {
       console.error(`❌${id}:`, error);
@@ -24,17 +23,15 @@ class ProductAPI {
     }
   }
 
-
-  static async getHomeProducts(count) {
+  static async getHomeBlog(count) {
     try {
-      const response = await axios.get(`${BASE_URL}/product/`, { params: { count: count } })
+      const response = await axios.get(`${BASE_URL}/blog/`, { params: { count: count } })
       return response.data;
     } catch (error) {
       console.error('❌', error);
       throw error;
     }
   }
-
 }
 
-export default ProductAPI;
+export default BlogAPI;
