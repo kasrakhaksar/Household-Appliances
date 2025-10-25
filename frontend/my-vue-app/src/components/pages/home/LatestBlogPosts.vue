@@ -1,112 +1,69 @@
 <template>
-    <section class="extra-section">
-      <h2>Latest Blog Posts</h2>
-      <p>Check out our latest tips and tricks for home appliance care and maintenance.</p>
+  <section class="py-5 text-center">
+    <div class="container">
+      <h2 class="text-primary mb-3">Latest Blog Posts</h2>
+      <p class="text-secondary mb-4">Check out our latest tips and tricks for home appliance care and maintenance.</p>
 
-      <section class="latest-blogs">
-        <h2>Latest Blogs</h2>
-        <div v-if="blogs.length > 0" class="blog-list">
-          <div v-for="blog in blogs" :key="blog.id" class="blog-card">
-            <h3>{{ blog.title }}</h3>
-            <p class="excerpt">{{ blog.excerpt }}</p>
+      <div v-if="blogs.length > 0" class="row g-4 justify-content-center">
+        <div v-for="blog in blogs" :key="blog.id" class="col-sm-6 col-md-4">
+          <div class="card blog-card h-100 p-3">
+            <h3 class="h5 text-primary">{{ blog.title }}</h3>
+            <p class="text-dark excerpt">{{ blog.excerpt }}</p>
             <router-link :to="`/blog/${blog.id}/`" class="read-more">Read More</router-link>
           </div>
         </div>
-        <p v-else>Loading...</p>
-      </section>
-    </section>
+      </div>
+
+      <p v-else>Loading...</p>
+    </div>
+  </section>
 </template>
-  
 
-
-  
-  
 <script>
-  import BlogAPI from './api/BlogsApi'
-  
-  export default {
-    name: 'BlogList',
-    data() {
-      return {
-        blogs: [],
-      };
-    },
-    async mounted() {
-      try {
-        this.blogs = await BlogAPI.getHomeBlog(1);
-        console.log(this.blogs);
-      } catch (error) {
-        console.error('❌ دریافت بلاگ‌ها با خطا مواجه شد:', error);
-      }
-    },
-  };
+import BlogAPI from './api/BlogsApi'
+
+export default {
+  name: 'BlogList',
+  data() {
+    return {
+      blogs: [],
+    };
+  },
+  async mounted() {
+    try {
+      this.blogs = await BlogAPI.getHomeBlog(1);
+      console.log(this.blogs);
+    } catch (error) {
+      console.error('❌ error:', error);
+    }
+  },
+};
 </script>
-  
-  
-  
+
 <style scoped>
-  
-  .extra-section {
-    padding: 2rem 1rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .extra-section h2 {
-    color: #003f88;
-    margin-bottom: 1rem;
-  }
-  
-  .extra-section p {
-    color: #0a2540;
-    margin-bottom: 1rem;
-  }
-  
-  .latest-blogs {
-  padding: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.blog-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
 .blog-card {
   background: linear-gradient(145deg, #f0f7ff, #d9e9ff);
   border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow:
-    0 8px 24px rgba(0, 63, 136, 0.15),
-    inset 0 0 10px rgba(255, 255, 255, 0.8);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .blog-card:hover {
   transform: translateY(-8px);
-  box-shadow:
-    0 16px 40px rgba(0, 63, 136, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 40px rgba(0, 63, 136, 0.25),
+              inset 0 0 15px rgba(255, 255, 255, 0.9);
 }
 
 .blog-card h3 {
-  color: #003f88;
   font-weight: 700;
-  font-size: 1.4rem;
   margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .blog-card .excerpt {
-  color: #1a2e5b;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;
   min-height: 60px;
+  margin-bottom: 1rem;
 }
 
 .read-more {
@@ -122,20 +79,4 @@
   color: #004a99;
   border-color: #004a99;
 }
-
-@media (max-width: 480px) {
-  .blog-card {
-    padding: 1rem;
-  }
-
-  .blog-card h3 {
-    font-size: 1.2rem;
-  }
-
-  .blog-card .excerpt {
-    font-size: 0.9rem;
-    min-height: auto;
-  }
-}
-  
 </style>

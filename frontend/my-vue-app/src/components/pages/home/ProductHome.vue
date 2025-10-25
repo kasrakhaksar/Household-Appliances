@@ -1,75 +1,51 @@
 <template>
-  <div class="product-list">
-    <div v-if="loading">loading</div>
-    <div v-else>
-      <div v-for="product in products" :key="product.id" class="product-card">
-        <router-link :to="`/product/${product.id}`" class="card-link">
-          <img :src="product.image" :alt="product.name" class="product-image" />
-          <h2>{{ product.name }}</h2>
-          <p>price: {{ product.price }} $</p>
-          <p>brand: {{ product.brand }}</p>
-          <p>category: {{ product.category }}</p>
+  <div class="container py-5">
+    <div v-if="loading" class="text-center">Loading...</div>
+    <div v-else class="row g-4 justify-content-center">
+      <div v-for="product in products" :key="product.id" class="col-sm-6 col-md-4 col-lg-3">
+        <router-link :to="`/product/${product.id}`" class="text-decoration-none">
+          <div class="card h-100 product-card shadow-sm text-center p-2">
+            <img :src="product.image" :alt="product.name" class="card-img-top product-image mb-2" />
+            <div class="card-body p-2">
+              <h5 class="card-title text-dark">{{ product.name }}</h5>
+              <p class="card-text text-secondary mb-1">Price: {{ product.price }} $</p>
+              <p class="card-text text-secondary mb-1">Brand: {{ product.brand }}</p>
+              <p class="card-text text-secondary mb-0">Category: {{ product.category }}</p>
+            </div>
+          </div>
         </router-link>
       </div>
     </div>
   </div>
 </template>
-  
-
-
 
 <script>
-  import ProductAPI from './api/ProductAPI';
+import ProductAPI from './api/ProductAPI';
 
-  export default {
-    name: 'ProductList',
-    data() {
-      return {
-        products: [],
-        loading: true,
-      };
-    },
-    async mounted() {
+export default {
+  name: 'ProductList',
+  data() {
+    return {
+      products: [],
+      loading: true,
+    };
+  },
+  async mounted() {
     try {
       this.products = await ProductAPI.getHomeProducts(4);
     } catch (error) {
-      console.error('❌ دریافت اطلاعات محصولات با خطا مواجه شد:', error);
+      console.error('❌ error :', error);
     } finally {
       this.loading = false;
     }
   }
-  };
+};
 </script>
-  
-
-
 
 <style scoped>
-.product-list {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.product-list > div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
 .product-card {
-  background: linear-gradient(135deg, #ffffff, #f3f3f3);
   border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  margin: 0.5rem;
-  flex: 1 1 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  max-width: 250px;
 }
 
 .product-card:hover {
@@ -78,50 +54,10 @@
 }
 
 .product-image {
-  width: 100%;
-  height: 160px;
   object-fit: contain;
-  margin-bottom: 0.75rem;
-  border-radius: 8px;
+  height: 160px;
   background: #fff;
   padding: 0.5rem;
+  border-radius: 8px;
 }
-
-.product-card h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  text-align: center;
-  color: #333;
-}
-
-.product-card p {
-  font-size: 0.875rem;
-  margin: 0.25rem 0;
-  text-align: center;
-  color: #555;
-}
-
-
-
-.card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 768px) {
-  .product-card {
-    flex: 1 1 100%;
-    max-width: 90%;
-  }
-}
-
-
-
 </style>
-
-  
-  

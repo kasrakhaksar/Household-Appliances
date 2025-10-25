@@ -1,70 +1,87 @@
 <template>
-    <nav class="mobile-bottom-nav">
-      <router-link to="/" class="nav-item">
-        <span>🏠</span>
-        <small>Home</small>
-      </router-link>
-      <router-link to="/products" class="nav-item">
-        <span>🛍️</span>
-        <small>Shop</small>
-      </router-link>
-      <router-link to="/cart" class="nav-item">
-        <span>🛒</span>
-        <small>Cart</small>
-      </router-link>
-      <router-link to="/auth" class="nav-item">
-        <span>👤</span>
-        <small>Account</small>
-      </router-link>
-    </nav>
-  </template>
-  
-  <script>
-  export default {
-    name: 'MobileBottomNav',
-  };
-  </script>
-  
+  <nav class="d-lg-none fixed-bottom text-light d-flex justify-content-around align-items-center py-2 shadow nav-custom">
+    <router-link 
+      to="/" 
+      class="text-center text-light nav-item-link"
+      :class="{ active: isActive('/') }"
+    >
+      <span class="fs-5 d-block">🏠</span>
+    </router-link>
+
+    <router-link 
+      to="/products" 
+      class="text-center text-light nav-item-link"
+      :class="{ active: isActive('/products') }"
+    >
+      <span class="fs-5 d-block">🛍️</span>
+    </router-link>
+
+    <router-link 
+      to="/cart" 
+      class="text-center text-light nav-item-link"
+      :class="{ active: isActive('/cart') }"
+    >
+      <span class="fs-5 d-block">🛒</span>
+    </router-link>
+
+    <router-link 
+      to="/auth" 
+      class="text-center text-light nav-item-link"
+      :class="{ active: isActive('/auth') }"
+    >
+      <span class="fs-5 d-block">👤</span>
+    </router-link>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'MobileBottomNav',
+  methods: {
+    isActive(route) {
+      return this.$route.path === route;
+    }
+  }
+};
+</script>
+
+
+
 <style scoped>
+.nav-custom {
+  background: linear-gradient(135deg, #182c86, #00695c);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
 
+.nav-item-link {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  position: relative;
+}
 
+.nav-item-link span {
+  display: block;
+  font-size: 1.4rem;
+}
 
-  .mobile-bottom-nav {
-    display: none;
-  }
-  
-  @media (max-width: 768px) {
-    .mobile-bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #003f88;
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem 0;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-  
-    .nav-item {
-      color: #cbe4ff;
-      text-decoration: none;
-      text-align: center;
-      font-size: 1rem;
-    }
-  
-    .nav-item small {
-      display: block;
-      font-size: 0.75rem;
-    }
-  
-    .nav-item:hover {
-      color: #00b4d8;
-    }
-  }
+.nav-item-link small {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
 
+.nav-item-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
 
-  </style>
-  
+.nav-item-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+</style>

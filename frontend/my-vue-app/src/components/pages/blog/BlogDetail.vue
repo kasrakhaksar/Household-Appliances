@@ -26,7 +26,7 @@
   
   <script>
   import BlogAPI from '../home/api/BlogsApi';
-  import { marked } from 'marked'; // ✨ اضافه شده
+  import { marked } from 'marked';
   
   export default {
     name: 'BlogDetail',
@@ -63,7 +63,6 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    font-family: "Segoe UI", sans-serif;
   }
   .header .title {
     font-size: 2.5rem;
@@ -100,4 +99,3 @@
     font-size: 1.2rem;
   }
   </style>
-  

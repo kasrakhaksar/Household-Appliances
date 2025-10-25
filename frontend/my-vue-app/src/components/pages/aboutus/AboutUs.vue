@@ -1,110 +1,59 @@
 <template>
-    <section class="about-container">
-        <div class="about-content">
-        <h1>About Us</h1>
-        <p>
-            Welcome to <strong>Household Appliances</strong> – your go-to destination for premium home appliances. We are proud to provide top-quality products and outstanding customer service.
-        </p>
-        <div class="features">
-            <div class="feature-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Quality">
-            <h3>Top Quality</h3>
-            <p>All of our products are crafted with the highest standards in mind.</p>
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <h1 class="mb-4 text-primary">About Us</h1>
+      <p class="mb-5 fs-5 text-muted">
+        Welcome to <strong>Household Appliances</strong> – your go-to destination for premium home appliances. 
+        We are proud to provide top-quality products and outstanding customer service.
+      </p>
+      <div class="row g-4 justify-content-center">
+        <!-- Feature 1 -->
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 hover-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" class="card-img-top mx-auto mb-3" alt="Quality" style="width: 60px;">
+            <div class="card-body">
+              <h5 class="card-title text-dark">Top Quality</h5>
+              <p class="card-text text-muted">All of our products are crafted with the highest standards in mind.</p>
             </div>
-            <div class="feature-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/1524/1524633.png" alt="Support">
-            <h3>24/7 Support</h3>
-            <p>We’re here for you at any hour, every day of the week.</p>
-            </div>
-            <div class="feature-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Team">
-            <h3>Professional Team</h3>
-            <p>Our team is composed of experienced and passionate individuals.</p>
-            </div>
+          </div>
         </div>
+        <!-- Feature 2 -->
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 hover-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1524/1524633.png" class="card-img-top mx-auto mb-3" alt="Support" style="width: 60px;">
+            <div class="card-body">
+              <h5 class="card-title text-dark">24/7 Support</h5>
+              <p class="card-text text-muted">We’re here for you at any hour, every day of the week.</p>
+            </div>
+          </div>
         </div>
-    </section>
+        <!-- Feature 3 -->
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 hover-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="card-img-top mx-auto mb-3" alt="Team" style="width: 60px;">
+            <div class="card-body">
+              <h5 class="card-title text-dark">Professional Team</h5>
+              <p class="card-text text-muted">Our team is composed of experienced and passionate individuals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
-
-
-
 <script>
-    export default {
-    name: 'AboutUs',
-    };
+export default {
+  name: 'AboutUs',
+};
 </script>
-  
-
 
 <style scoped>
-    .about-container {
-    padding: 3rem 1rem;
-    }
+.hover-card {
+  transition: transform 0.3s;
+}
 
-    .about-content {
-    max-width: 1000px;
-    margin: auto;
-    text-align: center;
-    }
-
-    .about-content h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    }
-
-    .about-content p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 2rem;
-    }
-
-    .features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    }
-
-    .feature-box {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    width: 280px;
-    transition: transform 0.3s;
-    text-align: center;
-    }
-
-    .feature-box:hover {
-    transform: translateY(-10px);
-    }
-
-    .feature-box img {
-    width: 60px;
-    margin-bottom: 1rem;
-    }
-
-    .feature-box h3 {
-    font-size: 1.5rem;
-    color: #34495e;
-    margin-bottom: 0.5rem;
-    }
-
-    .feature-box p {
-    font-size: 1rem;
-    color: #777;
-    }
-
-    @media (max-width: 768px) {
-        .features {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .feature-box {
-            width: 90%;
-        }
-    }
+.hover-card:hover {
+  transform: translateY(-10px);
+}
 </style>

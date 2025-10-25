@@ -5,3 +5,5 @@ media
 __pycache__
 migrations
 *.bat
+.env
+venv
