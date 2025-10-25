@@ -13,12 +13,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.text-primary {
-  color: #003f88 !important;
-}
-
-.text-secondary {
-  color: #0a2540 !important;
-}
-</style>

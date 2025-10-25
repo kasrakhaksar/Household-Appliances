@@ -13,6 +13,8 @@
   </div>
 </template>
 
+
+
 <script>
 import HeaderSection from './components/pages/layout/HeaderSection.vue';
 import FooterSection from './components/pages/layout/FooterSection.vue';
@@ -55,5 +57,15 @@ export default {
 
   div {
     font-family: 'ny-font';
+    
+  }
+
+
+  a, a:visited, a:hover, a:focus, a:active,
+  router-link, router-link:visited, router-link:hover, router-link:focus, router-link:active {
+    text-decoration: none !important; 
+    color: inherit !important;         
+    outline: none;                     
+    transition: color 0.2s;  
   }
 </style>

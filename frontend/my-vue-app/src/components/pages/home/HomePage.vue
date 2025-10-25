@@ -1,10 +1,13 @@
 <template>
-  <FeaturedProducts />
-  <SpecialOffers />
-  <AboutSection />
-  <TrustedBrands />
-  <CustomerReviews />
-  <LatestBlogPosts />
+  <div>
+    <AboutSection />
+    <FeaturedProducts />
+    <SpecialOffers />
+    <TrustedBrands />
+    <CustomerReviews />
+    <LatestBlogPosts />
+  </div>
+
 </template>
 
 

@@ -48,6 +48,9 @@ export default {
 
 
 <style scoped>
+
+
+
 .nav-custom {
   background: linear-gradient(135deg, #182c86, #00695c);
   border-top-left-radius: 15px;
@@ -62,6 +65,9 @@ export default {
   border-radius: 12px;
   transition: all 0.2s ease;
   position: relative;
+
+  text-decoration: none !important;
+  line-height: 1; 
 }
 
 .nav-item-link span {
@@ -84,4 +90,5 @@ export default {
   background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
 </style>

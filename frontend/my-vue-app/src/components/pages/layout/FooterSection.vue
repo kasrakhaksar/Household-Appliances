@@ -1,11 +1,11 @@
 <template>
-  <footer class="footer mt-auto text-white">
+  <footer class="footer mt-auto text-white bg-dark">
     <div class="container py-5">
       <div class="row g-4">
 
         <!-- Brand -->
         <div class="col-md-3">
-          <h2 class="brand">Household Appliances 🏠</h2>
+          <h2 class="brand">Household Appliances</h2>
           <p class="text-light">Your trusted partner in home appliances.</p>
         </div>
 
@@ -38,15 +38,7 @@
 
       </div>
 
-      <!-- Footer Bottom -->
-      <div class="text-center mt-4 pt-3 border-top border-light">
-        <p class="mb-0 small">© 2025 CoolHome Inc. All rights reserved.</p>
-        <div class="social-icons mt-2">
-          <a href="#" class="icon">🐦</a>
-          <a href="#" class="icon">📘</a>
-          <a href="#" class="icon">📸</a>
-        </div>
-      </div>
+
     </div>
   </footer>
 </template>
@@ -69,29 +61,8 @@ export default {
 </script>
 
 <style scoped>
-:global(html, body, #app) {
-  height: 100%;
-  margin: 0;
-}
-:global(#app) {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
 
-.footer {
-  background: linear-gradient(135deg, #0077b6, #00b4d8);
-  color: #fff;
-  margin-top: auto;
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
-}
 
-.brand {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 700;
-  color: #ffd166;
-}
 
 .link-hover {
   color: #fff;
@@ -113,7 +84,6 @@ export default {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Social Icons */
 .social-icons .icon {
   display: inline-block;
   margin: 0 5px;
@@ -123,4 +93,7 @@ export default {
 .social-icons .icon:hover {
   transform: scale(1.2);
 }
+
+
+
 </style>
