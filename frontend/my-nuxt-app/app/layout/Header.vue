@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-gradient-to-r from-blue-900 via-slate-900 to-blue-800 text-white sticky top-0 z-50 shadow-xl">
     <div class="container mx-auto px-6 flex items-center justify-between py-4">
-      
+
       <!-- Logo -->
       <router-link to="/" class="text-2xl font-bold tracking-tight text-blue-400 hover:text-blue-200">
         Household Appliances
@@ -9,6 +9,7 @@
 
       <!-- Desktop Menu -->
       <ul class="hidden lg:flex items-center gap-10">
+        <!-- Products Mega Menu -->
         <!-- Products Mega Menu -->
         <li class="relative group">
           <button class="flex items-center gap-1 font-semibold hover:text-blue-200 transition">
@@ -19,11 +20,10 @@
           </button>
 
           <!-- Mega Menu -->
-          <div
-            class="absolute top-full left-0 w-screen max-w-6xl bg-white text-gray-800 rounded-xl shadow-2xl 
-                   opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-                   transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 p-8 grid grid-cols-4 gap-6 z-50"
-          >
+          <!-- Mega Menu -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-screen max-w-6xl bg-white text-gray-800 rounded-xl shadow-2xl 
+         opacity-0 invisible translate-y-6 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+         transition-all duration-500 ease-out p-8 grid grid-cols-4 gap-6 z-50">
             <div v-for="(category, idx) in categories" :key="idx">
               <h6 class="font-bold text-blue-600 mb-2">{{ category.label }}</h6>
               <ul class="space-y-1">
@@ -33,7 +33,9 @@
               </ul>
             </div>
           </div>
+
         </li>
+
 
         <li>
           <router-link to="/" class="hover:text-blue-200 transition font-semibold">Home</router-link>
@@ -52,21 +54,15 @@
         <button class="hover:text-blue-200 transition text-xl">🛒</button>
 
         <span>
-          <router-link
-            v-if="!isLoggedIn"
-            to="/auth"
-            class="text-blue-400 hover:text-blue-200 text-xl transition"
-          >👤</router-link>
-          <button
-            v-else
-            @click="logout"
-            class="text-red-400 hover:text-red-600 text-xl transition"
-          >🚪</button>
+          <router-link v-if="!isLoggedIn" to="/auth"
+            class="text-blue-400 hover:text-blue-200 text-xl transition">👤</router-link>
+          <button v-else @click="logout" class="text-red-400 hover:text-red-600 text-xl transition">🚪</button>
         </span>
 
         <!-- Mobile Menu Button -->
         <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-2xl">
-          <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
           <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -91,7 +87,8 @@
         <li v-if="categories.length">
           <span class="font-semibold mb-2 block">Products</span>
           <ul class="pl-4 space-y-1">
-            <li v-for="(category, idx) in categories" :key="idx" class="hover:text-blue-400 transition">{{ category.label }}</li>
+            <li v-for="(category, idx) in categories" :key="idx" class="hover:text-blue-400 transition">{{
+              category.label }}</li>
           </ul>
         </li>
       </ul>
@@ -130,6 +127,6 @@ const logout = () => {
 <style scoped>
 /* Optional: add subtle gradient border/shadow for luxury feel */
 nav {
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 </style>
