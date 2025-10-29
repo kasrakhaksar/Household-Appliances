@@ -7,3 +7,4 @@ migrations
 *.bat
 .env
 venv
+.nuxt
