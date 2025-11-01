@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet , ViewSet
 from rest_framework.response import Response
 from product.models import Product
-from product.serializers import ProductSerializer
+from product.serializers import ProductSerializer , ProductSearchSerializer
 from django.core.cache import cache
 from django_redis import get_redis_connection
 import json
@@ -71,7 +71,21 @@ class ProductCategoryListView(ViewSet):
             choices = json.loads(cached_data)
         else:
             print("Cache miss: serializing category choices.")
-            choices = [{'label': label} for key, label in Product.CATEGORY_CHOICES]
+            choices = [{'label': label, 'value': key} for key, label in Product.CATEGORY_CHOICES]
             cache.set(cache_key, json.dumps(choices), 60 * 60)
 
         return Response(choices)
+    
+
+
+
+class ProductSearchCategoryViewSet(ViewSet):
+
+    def list(self, request):
+
+        category_search = request.query_params.get('category', None)
+
+        products = Product.objects.filter(is_active=True, category=category_search)
+        serializer = ProductSearchSerializer(products, many=True, context={'request': request})
+
+        return Response(serializer.data)

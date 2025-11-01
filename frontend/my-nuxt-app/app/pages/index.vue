@@ -2,8 +2,8 @@
 
   <AboutSection/>
   <FeaturedProducts/>
-  <CustomerReviews/>
   <LatestBlogPosts/>
+  <CustomerReviews/>
 
 </template> 
 

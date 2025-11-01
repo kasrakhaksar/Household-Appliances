@@ -16,6 +16,7 @@
       <div>
         <h5 class="font-semibold text-white mb-4">Quick Links</h5>
         <ul class="space-y-2">
+          <li><router-link to="/blog" class="hover:text-blue-400 transition">Blog</router-link></li>
           <li><router-link to="/aboutus" class="hover:text-blue-400 transition">About Us</router-link></li>
           <li><router-link to="/contactus" class="hover:text-blue-400 transition">Contact Us</router-link></li>
         </ul>
@@ -69,13 +70,3 @@ const subscribe = () => {
   email.value = "";
 };
 </script>
-
-<style scoped>
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 0.2; }
-  50% { transform: scale(1.2); opacity: 0.3; }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
-</style>

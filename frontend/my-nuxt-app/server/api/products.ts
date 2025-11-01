@@ -2,24 +2,27 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8000';
 
-// Define a Product type
 export interface Product {
   id: number;
   name: string;
   price: number;
-  brand: string;
+  discount_price?: number;
+  stock: number;
+  brand?: string;
   category: string;
-  image: string;
-  [key: string]: any; 
+  description?: string;
+  image?: string;
+  [key: string]: any;
 }
 
 class ProductAPI {
+  // گرفتن همه محصولات
   static async getAllProducts(): Promise<Product[]> {
     try {
       const response = await axios.get<Product[]>(`${BASE_URL}/product/`);
       return response.data;
     } catch (error) {
-      console.error('❌', error);
+      console.error('❌ Error fetching all products:', error);
       throw error;
     }
   }
@@ -29,7 +32,19 @@ class ProductAPI {
       const response = await axios.get<Product>(`${BASE_URL}/product/${id}/`);
       return response.data;
     } catch (error) {
-      console.error(`❌${id}:`, error);
+      console.error(`❌ Error fetching product ${id}:`, error);
+      throw error;
+    }
+  }
+
+  static async getProductsByCategory(category: string): Promise<Product[]> {
+    try {
+      const response = await axios.get<Product[]>(`${BASE_URL}/products/search/`, {
+        params: { category },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`❌ Error fetching products for category ${category}:`, error);
       throw error;
     }
   }
@@ -41,7 +56,7 @@ class ProductAPI {
       });
       return response.data;
     } catch (error) {
-      console.error('❌', error);
+      console.error('❌ Error fetching home products:', error);
       throw error;
     }
   }

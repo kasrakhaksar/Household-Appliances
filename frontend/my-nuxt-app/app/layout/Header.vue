@@ -10,7 +10,6 @@
       <!-- Desktop Menu -->
       <ul class="hidden lg:flex items-center gap-10">
         <!-- Products Mega Menu -->
-        <!-- Products Mega Menu -->
         <li class="relative group">
           <button class="flex items-center gap-1 font-semibold hover:text-blue-200 transition">
             Products
@@ -20,17 +19,21 @@
           </button>
 
           <!-- Mega Menu -->
-          <!-- Mega Menu -->
           <div class="absolute top-full left-1/2 -translate-x-1/2 w-screen max-w-6xl bg-white text-gray-800 rounded-xl shadow-2xl 
          opacity-0 invisible translate-y-6 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
          transition-all duration-500 ease-out p-8 grid grid-cols-4 gap-6 z-50">
             <div v-for="(category, idx) in categories" :key="idx">
               <h6 class="font-bold text-blue-600 mb-2">{{ category.label }}</h6>
               <ul class="space-y-1">
-                <li><a href="#" class="hover:text-blue-400 transition">View All</a></li>
+                <li>
+                  <button @click="magaMenuGetCategory(category.value)" class="hover:text-blue-400 transition">
+                    View All
+                  </button>
+                </li>
                 <li><a href="#" class="hover:text-blue-400 transition">Best Sellers</a></li>
                 <li><a href="#" class="hover:text-blue-400 transition">New Arrivals</a></li>
               </ul>
+
             </div>
           </div>
 
@@ -39,6 +42,9 @@
 
         <li>
           <router-link to="/" class="hover:text-blue-200 transition font-semibold">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/blog" class="hover:text-blue-200 transition font-semibold">Blog</router-link>
         </li>
         <li>
           <router-link to="/aboutus" class="hover:text-blue-200 transition font-semibold">About Us</router-link>
@@ -96,25 +102,24 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
-import axios from "axios";
 import { useRouter } from "vue-router";
+import { fetchCategories, magaMenuProductRouter } from "../../server/api/header";
 
-const categories = ref([]);
+const categories = ref<any[]>([]);
 const router = useRouter();
 const isLoggedIn = ref(false);
 const mobileOpen = ref(false);
 
 onMounted(async () => {
-  try {
-    const res = await axios.get("http://localhost:8000/products/categories/");
-    categories.value = res.data;
-    isLoggedIn.value = !!localStorage.getItem("access_token");
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-  }
+  categories.value = await fetchCategories();
+  isLoggedIn.value = !!localStorage.getItem("access_token");
 });
+
+const magaMenuGetCategory = (categoryValue: string) => {
+  magaMenuProductRouter(router, categoryValue);
+};
 
 const logout = () => {
   localStorage.removeItem("access_token");
@@ -123,10 +128,3 @@ const logout = () => {
   router.push("/auth");
 };
 </script>
-
-<style scoped>
-/* Optional: add subtle gradient border/shadow for luxury feel */
-nav {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-</style>
