@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@layer components {
+  blockquote {
+    @apply border-l-4 border-gray-500 pl-4 italic text-gray-300;
+  }
+}
+
+
 /* 
   Custom Theme Overrides 
   – Simple, brand-focused, and dark-mode ready.

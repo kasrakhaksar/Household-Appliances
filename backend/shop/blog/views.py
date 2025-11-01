@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from django.core.cache import cache
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_redis import get_redis_connection
 import json
 from .models import Blog
@@ -11,6 +11,8 @@ from .serializers import BlogSerializer
 
 class BlogViewSet(ModelViewSet):
     serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
 
     def get_queryset(self):
         queryset = Blog.objects.all().order_by('-created_at')

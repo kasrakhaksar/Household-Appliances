@@ -2,14 +2,11 @@
   <nav class="bg-gradient-to-r from-blue-900 via-slate-900 to-blue-800 text-white sticky top-0 z-50 shadow-xl">
     <div class="container mx-auto px-6 flex items-center justify-between py-4">
 
-      <!-- Logo -->
       <router-link to="/" class="text-2xl font-bold tracking-tight text-blue-400 hover:text-blue-200">
         Household Appliances
       </router-link>
 
-      <!-- Desktop Menu -->
       <ul class="hidden lg:flex items-center gap-10">
-        <!-- Products Mega Menu -->
         <li class="relative group">
           <button class="flex items-center gap-1 font-semibold hover:text-blue-200 transition">
             Products
@@ -18,7 +15,6 @@
             </svg>
           </button>
 
-          <!-- Mega Menu -->
           <div class="absolute top-full left-1/2 -translate-x-1/2 w-screen max-w-6xl bg-white text-gray-800 rounded-xl shadow-2xl 
          opacity-0 invisible translate-y-6 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
          transition-all duration-500 ease-out p-8 grid grid-cols-4 gap-6 z-50">
@@ -30,10 +26,7 @@
                     View All
                   </button>
                 </li>
-                <li><a href="#" class="hover:text-blue-400 transition">Best Sellers</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition">New Arrivals</a></li>
               </ul>
-
             </div>
           </div>
 
@@ -54,18 +47,18 @@
         </li>
       </ul>
 
-      <!-- Icons -->
       <div class="flex items-center gap-5">
         <button class="hover:text-blue-200 transition text-xl">🔍</button>
         <button class="hover:text-blue-200 transition text-xl">🛒</button>
 
         <span>
           <router-link v-if="!isLoggedIn" to="/auth"
-            class="text-blue-400 hover:text-blue-200 text-xl transition">👤</router-link>
-          <button v-else @click="logout" class="text-red-400 hover:text-red-600 text-xl transition">🚪</button>
+            class="text-blue-400 hover:text-blue-200 text-xl transition cursor-pointer">👤</router-link>
+          <button v-else @click="logout"
+            class="text-red-400 hover:text-red-600 text-xl transition cursor-pointer">🚪</button>
         </span>
 
-        <!-- Mobile Menu Button -->
+
         <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-2xl">
           <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
             viewBox="0 0 24 24">
@@ -78,7 +71,6 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
     <div v-if="mobileOpen" class="lg:hidden bg-slate-900 text-white">
       <ul class="flex flex-col px-6 py-4 gap-4">
         <li>

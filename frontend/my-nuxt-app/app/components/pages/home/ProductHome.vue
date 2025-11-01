@@ -8,13 +8,11 @@
         <div class="group relative bg-slate-900 border border-slate-700
                  rounded-2xl shadow-xl p-4 flex flex-col items-center text-center
                  hover:shadow-blue-400/30 transition-shadow duration-300 w-full h-full">
-          <!-- Product Image -->
           <div class="w-full h-72 rounded-2xl mb-4 overflow-hidden">
             <img :src="product.image" :alt="product.name"
               class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
 
-          <!-- Product Info -->
           <h5 class="font-bold text-white text-lg mb-2 break-words">
             {{ product.name }}
           </h5>
@@ -32,6 +30,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script setup>
 import { ref, onMounted } from 'vue'

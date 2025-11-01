@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet , ViewSet
 from rest_framework.response import Response
 from product.models import Product
 from product.serializers import ProductSerializer , ProductSearchSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.core.cache import cache
 from django_redis import get_redis_connection
 import json
@@ -14,6 +15,7 @@ import json
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = Product.objects.filter(is_active=True).order_by('-created_at')
@@ -61,6 +63,7 @@ class ProductViewSet(ModelViewSet):
 
 
 class ProductCategoryListView(ViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def list(self, request):
         cache_key = 'product_category_choices'
@@ -80,6 +83,7 @@ class ProductCategoryListView(ViewSet):
 
 
 class ProductSearchCategoryViewSet(ViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def list(self, request):
 

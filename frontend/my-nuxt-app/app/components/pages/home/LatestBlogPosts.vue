@@ -2,7 +2,7 @@
   <section class="py-12 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
     <div class="container mx-auto px-4 text-center">
 
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Latest Blog Posts</h2>
+      <h4 class="text-3xl md:text-4xl font-extrabold mb-4">Latest Blog Posts</h4>
       <p class="text-gray-300 mb-8 text-lg md:text-xl">
         Check out our latest tips and tricks for home appliance care and maintenance.
       </p>

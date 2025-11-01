@@ -19,33 +19,34 @@
         </div>
 
 
-        <article class="prose prose-invert max-w-none mb-6" v-html="renderMarkdown(blog.content)"></article>
+        <article class="prose prose-invert max-w-none mb-6" v-html="blog.content" style="white-space: pre-wrap;">
+        </article>
 
         <div v-if="blog.tags && blog.tags.length" class="mt-6">
           <span class="font-semibold">Tags:</span>
-          <span v-for="tag in blog.tags" :key="tag.id"
-            class="inline-block bg-gray-700 text-gray-200 px-2 py-1 rounded mr-2 mb-2 text-sm">
+          <router-link v-for="tag in blog.tags" :key="tag.id" :to="{ path: '/blog', query: { tag: tag.name } }"
+            class="inline-block bg-gray-700 text-gray-200 px-2 py-1 rounded mr-2 mb-2 text-sm hover:bg-indigo-500 hover:text-white transition-colors">
             #{{ tag.name }}
-          </span>
+          </router-link>
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
+
+
+
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import BlogAPI from '../../../server/api/blogs'
-import { marked } from 'marked'
 
 const route = useRoute()
 const blog = ref<any>(null)
 const loading = ref(true)
 
-
-
-const renderMarkdown = (md: string) => marked.parse(md || '')
 
 onMounted(async () => {
   const id = Number(route.params.id)
