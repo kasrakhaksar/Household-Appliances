@@ -1,35 +1,20 @@
 <template>
-  <button
-    :class="buttonClasses"
-    :disabled="disabled || loading"
-    @click="$emit('click')"
-  >
-    <!-- Loader -->
+  <button :class="buttonClasses" :disabled="disabled || loading" @click="$emit('click')">
     <span v-if="loading" class="animate-spin mr-2">
-      <svg
-        class="w-4 h-4 text-white"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 4v5h.582m0 0A5.002 5.002 0 0112 4v0a5.002 5.002 0 017.418 5H20v-5m-8 8v5m0 0a5.002 5.002 0 01-7.418-5H4v5m8-5h8"
-        ></path>
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 4v5h.582m0 0A5.002 5.002 0 0112 4v0a5.002 5.002 0 017.418 5H20v-5m-8 8v5m0 0a5.002 5.002 0 01-7.418-5H4v5m8-5h8">
+        </path>
       </svg>
     </span>
 
-    <!-- Icon Left -->
     <span v-if="icon && !loading" class="mr-2">
       <component :is="icon" />
     </span>
 
     <span>{{ label }}</span>
 
-    <!-- Icon Right -->
     <span v-if="iconRight && !loading" class="ml-2">
       <component :is="iconRight" />
     </span>
@@ -42,8 +27,8 @@ import { defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
   label: { type: String, required: true },
-  color: { type: String, default: 'blue' }, 
-  size: { type: String, default: 'md' }, 
+  color: { type: String, default: 'blue' },
+  size: { type: String, default: 'md' },
   outline: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   loading: { type: Boolean, default: false },

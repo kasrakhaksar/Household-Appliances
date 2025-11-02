@@ -28,10 +28,10 @@
               <span v-else>Out of stock ❌</span>
             </p>
 
-            <router-link :to="`/product/${product.id}`"
+            <NuxtLink :to="`/product/${product.id}`"
                          class="mt-auto inline-block text-indigo-400 hover:text-indigo-300 font-semibold">
               View Details →
-            </router-link>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import ProductAPI from '../../../server/api/products'
+import ProductAPI from '@/service/products'
 
 const products = ref<any[]>([])
 const loading = ref(true)

@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import CustomButton from '~/components/common/CustomButton.vue'
+import CustomButton from '@/components/common/CustomButton.vue'
 
 interface ContactForm {
     email: string

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import ProductAPI from '../../../server/api/products';
+import ProductAPI from '@/service/products';
 
 export default {
   name: 'ProductDetail',

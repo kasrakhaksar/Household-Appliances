@@ -32,10 +32,10 @@
                             </span>
                         </div>
 
-                        <router-link :to="`/blog/${post.id}`"
+                        <NuxtLink :to="`/blog/${post.id}`"
                             class="mt-auto inline-block text-indigo-400 hover:text-indigo-300 font-semibold">
                             Read More →
-                        </router-link>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import BlogAPI from '../../../server/api/blogs'
+import BlogAPI from '@/service/blogs'
 
 const route = useRoute()
 const blogs = ref<any[]>([])

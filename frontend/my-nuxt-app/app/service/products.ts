@@ -16,7 +16,6 @@ export interface Product {
 }
 
 class ProductAPI {
-  // گرفتن همه محصولات
   static async getAllProducts(): Promise<Product[]> {
     try {
       const response = await axios.get<Product[]>(`${BASE_URL}/product/`);

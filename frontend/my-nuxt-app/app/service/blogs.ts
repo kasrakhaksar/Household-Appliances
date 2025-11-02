@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
+import type { AxiosResponse } from "axios";
+import axios from "axios";
 
 const BASE_URL = 'http://localhost:8000';
 

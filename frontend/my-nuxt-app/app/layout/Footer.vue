@@ -17,9 +17,9 @@
       <div>
         <h5 class="font-semibold text-white mb-4">Quick Links</h5>
         <ul class="space-y-2">
-          <li><router-link to="/blog" class="hover:text-blue-400 transition">Blog</router-link></li>
-          <li><router-link to="/aboutus" class="hover:text-blue-400 transition">About Us</router-link></li>
-          <li><router-link to="/contactus" class="hover:text-blue-400 transition">Contact Us</router-link></li>
+          <li><NuxtLink to="/blog" class="hover:text-blue-400 transition">Blog</NuxtLink></li>
+          <li><NuxtLink to="/aboutus" class="hover:text-blue-400 transition">About Us</NuxtLink></li>
+          <li><NuxtLink to="/contactus" class="hover:text-blue-400 transition">Contact Us</NuxtLink></li>
         </ul>
       </div>
 
@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import CustomButton from '~/components/common/CustomButton.vue'
+import CustomButton from '@/components/common/CustomButton.vue'
 
 const email = ref("");
 

@@ -113,8 +113,8 @@
 import { ref } from 'vue'
 import Swal from 'sweetalert2'
 import { useRouter } from 'vue-router'
-import { login, signup } from '../../server/api/auth'
-import CustomButton from '~/components/common/CustomButton.vue'
+import { login, signup } from '@/service/auth'
+import CustomButton from '@/components/common/CustomButton.vue'
 
 const router = useRouter()
 
@@ -167,11 +167,11 @@ const handleSignup = async () => {
 
 <style scoped>
 .bg-login {
-  background-image: url('~/assets/auth/login.jpg');
+  background-image: url('@/assets/auth/login.jpg');
 }
 
 .bg-signup {
-  background-image: url('~/assets/auth/signup.jpg');
+  background-image: url('@/assets/auth/signup.jpg');
 }
 
 .perspective {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8000/api'
+const BASE_URL = 'http://localhost:8000'
+
 
 export interface LoginData {
   username: string
@@ -18,14 +19,10 @@ export interface AuthResponse {
   refresh: string
 }
 
-/**
- * Login function
- * @param data {LoginData}
- * @returns {Promise<AuthResponse>}
- */
+
 export const login = async (data: LoginData): Promise<AuthResponse> => {
   try {
-    const response = await axios.post(`${API_URL}/token/`, data)
+    const response = await axios.post(`${BASE_URL}/api/token/`, data)
     return response.data
   } catch (err: any) {
     if (err.response?.data?.detail) {
@@ -36,14 +33,10 @@ export const login = async (data: LoginData): Promise<AuthResponse> => {
   }
 }
 
-/**
- * Signup function
- * @param data {SignupData}
- * @returns {Promise<AuthResponse>}
- */
+
 export const signup = async (data: SignupData): Promise<AuthResponse> => {
   try {
-    const response = await axios.post(`${API_URL}/signup/`, data)
+    const response = await axios.post(`${BASE_URL}/api/signup/`, data)
     return response.data
   } catch (err: any) {
     if (err.response?.data) {

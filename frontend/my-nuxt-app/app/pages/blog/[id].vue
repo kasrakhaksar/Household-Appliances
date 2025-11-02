@@ -24,10 +24,10 @@
 
         <div v-if="blog.tags && blog.tags.length" class="mt-6">
           <span class="font-semibold">Tags:</span>
-          <router-link v-for="tag in blog.tags" :key="tag.id" :to="{ path: '/blog', query: { tag: tag.name } }"
+          <NuxtLink v-for="tag in blog.tags" :key="tag.id" :to="{ path: '/blog', query: { tag: tag.name } }"
             class="inline-block bg-gray-700 text-gray-200 px-2 py-1 rounded mr-2 mb-2 text-sm hover:bg-indigo-500 hover:text-white transition-colors">
             #{{ tag.name }}
-          </router-link>
+          </NuxtLink>
         </div>
 
       </div>
@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import BlogAPI from '../../../server/api/blogs'
+import BlogAPI from '@/service/blogs'
 
 const route = useRoute()
 const blog = ref<any>(null)

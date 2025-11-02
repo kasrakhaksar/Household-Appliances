@@ -14,12 +14,12 @@
           >
             <h3 class="text-xl font-bold text-white mb-3">{{ blog.title }}</h3>
             <p class="text-gray-300 text-sm mb-4 flex-1">{{ blog.excerpt }}</p>
-            <router-link
+            <NuxtLink
               :to="`/blog/${blog.id}/`"
               class="mt-auto inline-block text-blue-400 font-semibold hover:text-blue-600 hover:border-b-2 border-blue-600 transition-all"
             >
               Read More
-            </router-link>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import BlogAPI from '../../../../server/api/blogs'
+import BlogAPI from '@/service/blogs'
 
 export default {
   name: 'BlogList',

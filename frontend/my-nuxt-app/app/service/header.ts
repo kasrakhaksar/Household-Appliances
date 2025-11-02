@@ -1,14 +1,13 @@
 import axios from "axios";
-import { Router } from "vue-router";
 
 
-const API_BASE = "http://localhost:8000";
+const BASE_URL = "http://localhost:8000";
 
 
 
 export const fetchCategories = async () => {
   try {
-    const response = await axios.get(`${API_BASE}/products/categories/`);
+    const response = await axios.get(`${BASE_URL}/products/categories/`);
     return response.data;
   } catch (error) {
     console.error("Error fetching categories:", error);

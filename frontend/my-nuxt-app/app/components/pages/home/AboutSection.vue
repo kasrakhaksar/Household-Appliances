@@ -36,8 +36,8 @@
       <div class="lg:w-1/2">
         <video
           class="w-full rounded-3xl shadow-2xl ring-4 ring-blue-500/30 hover:ring-pink-400/40 transition-all duration-500"
-          controls poster="~/assets/home_media/poster-video.png">
-          <source src="~assets/home_media/video.mp4" type="video/mp4" />
+          controls poster="@/assets/home_media/poster-video.png">
+          <source src="@/assets/home_media/video.mp4" type="video/mp4" />
         </video>
       </div>
 

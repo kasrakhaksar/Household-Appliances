@@ -2,9 +2,9 @@
   <nav class="bg-gradient-to-r from-blue-900 via-slate-900 to-blue-800 text-white sticky top-0 z-50 shadow-xl">
     <div class="container mx-auto px-6 flex items-center justify-between py-4">
 
-      <router-link to="/" class="text-2xl font-bold tracking-tight text-blue-400 hover:text-blue-200">
+      <NuxtLink to="/" class="text-2xl font-bold tracking-tight text-blue-400 hover:text-blue-200">
         Household Appliances
-      </router-link>
+      </NuxtLink>
 
       <ul class="hidden lg:flex items-center gap-10">
         <li class="relative group">
@@ -34,16 +34,16 @@
 
 
         <li>
-          <router-link to="/" class="hover:text-blue-200 transition font-semibold">Home</router-link>
+          <NuxtLink to="/" class="hover:text-blue-200 transition font-semibold">Home</NuxtLink>
         </li>
         <li>
-          <router-link to="/blog" class="hover:text-blue-200 transition font-semibold">Blog</router-link>
+          <NuxtLink to="/blog" class="hover:text-blue-200 transition font-semibold">Blog</NuxtLink>
         </li>
         <li>
-          <router-link to="/aboutus" class="hover:text-blue-200 transition font-semibold">About Us</router-link>
+          <NuxtLink to="/aboutus" class="hover:text-blue-200 transition font-semibold">About Us</NuxtLink>
         </li>
         <li>
-          <router-link to="/contactus" class="hover:text-blue-200 transition font-semibold">Contact Us</router-link>
+          <NuxtLink to="/contactus" class="hover:text-blue-200 transition font-semibold">Contact Us</NuxtLink>
         </li>
       </ul>
 
@@ -52,8 +52,8 @@
         <button class="hover:text-blue-200 transition text-xl">🛒</button>
 
         <span>
-          <router-link v-if="!isLoggedIn" to="/auth"
-            class="text-blue-400 hover:text-blue-200 text-xl transition cursor-pointer">👤</router-link>
+          <NuxtLink v-if="!isLoggedIn" to="/auth"
+            class="text-blue-400 hover:text-blue-200 text-xl transition cursor-pointer">👤</NuxtLink>
           <button v-else @click="logout"
             class="text-red-400 hover:text-red-600 text-xl transition cursor-pointer">🚪</button>
         </span>
@@ -74,13 +74,13 @@
     <div v-if="mobileOpen" class="lg:hidden bg-slate-900 text-white">
       <ul class="flex flex-col px-6 py-4 gap-4">
         <li>
-          <router-link to="/" class="hover:text-blue-400 transition">Home</router-link>
+          <NuxtLink to="/" class="hover:text-blue-400 transition">Home</NuxtLink>
         </li>
         <li>
-          <router-link to="/aboutus" class="hover:text-blue-400 transition">About Us</router-link>
+          <NuxtLink to="/aboutus" class="hover:text-blue-400 transition">About Us</NuxtLink>
         </li>
         <li>
-          <router-link to="/contactus" class="hover:text-blue-400 transition">Contact Us</router-link>
+          <NuxtLink to="/contactus" class="hover:text-blue-400 transition">Contact Us</NuxtLink>
         </li>
         <li v-if="categories.length">
           <span class="font-semibold mb-2 block">Products</span>
@@ -97,7 +97,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { fetchCategories, magaMenuProductRouter } from "../../server/api/header";
+import { fetchCategories, magaMenuProductRouter } from "../service/header";
 
 const categories = ref<any[]>([]);
 const router = useRouter();
