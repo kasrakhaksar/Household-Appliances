@@ -1,6 +1,5 @@
 <template>
   <footer class="bg-gradient-to-t from-slate-900 via-slate-800 to-slate-900 text-white py-16 relative overflow-hidden">
-    <!-- افکت بکگراند -->
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-500 opacity-20 rounded-full blur-3xl animate-pulse-slow">
     </div>
     <div
@@ -8,7 +7,6 @@
     </div>
 
     <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-4 gap-10">
-      <!-- بخش اول: توضیحات -->
       <div>
         <h2 class="text-2xl font-bold text-blue-400 mb-4">Household Appliances</h2>
         <p class="text-gray-300">
@@ -16,7 +14,6 @@
         </p>
       </div>
 
-      <!-- بخش دوم: لینک سریع -->
       <div>
         <h5 class="font-semibold text-white mb-4">Quick Links</h5>
         <ul class="space-y-2">
@@ -32,7 +29,6 @@
         </ul>
       </div>
 
-      <!-- بخش سوم: تماس -->
       <div>
         <h5 class="font-semibold text-white mb-4">Contact</h5>
         <p class="text-gray-300 mb-1">📍 123 Blue Street, Tech City</p>
@@ -40,7 +36,6 @@
         <p class="text-gray-300">📧 support@coolhome.com</p>
       </div>
 
-      <!-- بخش چهارم: خبرنامه -->
       <div>
         <h5 class="font-semibold text-white mb-4">Subscribe to Our Newsletter</h5>
         <p class="text-gray-300 mb-3">
