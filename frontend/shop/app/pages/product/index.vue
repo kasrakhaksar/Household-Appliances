@@ -57,10 +57,8 @@ const fetchProducts = async () => {
   try {
     const category = route.query.category as string | undefined
     if (category) {
-      // اگر category در query بود، فقط همان دسته
       products.value = await ProductAPI.getProductsByCategory(category)
     } else {
-      // اگر category نبود، همه محصولات
       products.value = await ProductAPI.getAllProducts()
     }
   } catch (error) {

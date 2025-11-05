@@ -10,20 +10,17 @@
       </div>
 
       <div v-else-if="product" class="product-container flex flex-wrap gap-8">
-        
         <div class="image-section flex-1 min-w-[300px] h-[350px] md:h-auto text-center">
-          <img
-            :src="product.image"
-            :alt="product.name"
-            class="w-full h-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
-          />
+          <img :src="product.image" :alt="product.name"
+            class="w-full h-full object-cover rounded-xl transition-transform duration-300 hover:scale-105" />
         </div>
 
         <div class="info-section flex-1 min-w-[400px] text-left">
           <h1 class="product-name text-3xl md:text-4xl font-extrabold mb-4">{{ product.name }}</h1>
 
           <div v-if="product.discount_price && product.discount_price > 0" class="mb-4">
-            <span class="discount-badge inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-1 animate-pulse">
+            <span
+              class="discount-badge inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold mb-1 animate-pulse">
               🔥 Save {{ ((product.discount_price * 100) / product.price).toFixed(0) }}%
             </span>
             <p class="product-price text-lg mt-1">
@@ -35,7 +32,6 @@
           </div>
           <p v-else class="product-price text-blue-400 text-lg">${{ product.price }}</p>
 
-
           <p :class="stockClass" class="mt-2 font-medium">
             <strong>Stock:</strong>
             <span v-if="product.stock > 0">{{ product.stock }} item<span v-if="product.stock > 1">s</span> left</span>
@@ -44,7 +40,6 @@
 
           <p class="mt-2"><strong>Brand:</strong> {{ product.brand }}</p>
           <p class="mt-1"><strong>Category:</strong> {{ product.category }}</p>
-
           <p class="product-desc mt-4 text-gray-300 leading-relaxed">{{ product.description }}</p>
         </div>
       </div>
@@ -52,15 +47,24 @@
       <div v-else class="not-found text-center text-gray-300 text-xl py-12">
         <p>Product not found 😕</p>
       </div>
+
+
+
+      <RelatedProducts v-if="product" :productId="product.id" />
     </div>
   </div>
 </template>
 
+
+
+
 <script>
 import ProductAPI from '@/service/products';
+import RelatedProducts from '@/components/pages/product/RelatedProducts.vue';
 
 export default {
   name: 'ProductDetail',
+  components: { RelatedProducts },
   data() {
     return {
       product: null,
@@ -90,17 +94,36 @@ export default {
 
 <style>
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
 .animate-flash {
   animation: flash 1s infinite;
 }
+
 @keyframes flash {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0.5; }
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.5;
+  }
 }
 </style>

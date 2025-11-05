@@ -1,4 +1,4 @@
-# shop-django-api
+# Shop Backend
 
 ## Project setup
 

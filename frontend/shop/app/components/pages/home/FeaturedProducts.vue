@@ -21,10 +21,9 @@
 </template>
 
 <script>
-import ProductHome from './ProductHome.vue';
+import ProductHome from '@/components/pages/home/ProductHome.vue';
 
 export default {
-  name: 'FeaturedProducts',
   components: { ProductHome },
 };
 </script>

@@ -20,19 +20,32 @@ from django.contrib import admin
 from django.urls import path , include
 from rest_framework.routers import DefaultRouter
 from api_shop.views import  SignupView
-from product.views import ProductViewSet , ProductCategoryListView , ProductSearchCategoryViewSet
+from product.views import ProductViewSet 
 from blog.views import BlogViewSet
 from django.conf.urls.static import static
 import shop.settings
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView , TokenRefreshView
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Shop API",
+        default_version='v1',
+        description="API documentation for the shop project",
+    ),
+    public=True,
+    permission_classes=(permissions.IsAuthenticatedOrReadOnly,),
+)
 
 router = DefaultRouter()
 
 
 router.register(r'product', ProductViewSet , basename='product')
-router.register(r'products/categories', ProductCategoryListView , basename='categories')
-router.register(r'products/search', ProductSearchCategoryViewSet, basename='products-search')
 router.register(r'blog', BlogViewSet , basename='blog')
 
 
@@ -42,5 +55,10 @@ urlpatterns = [
     path('api/signup/', SignupView.as_view(), name='signup'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
+    path('swagger(<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
     path('', include(router.urls))
 ] + static(shop.settings.MEDIA_URL, document_root=shop.settings.MEDIA_ROOT)

@@ -6,6 +6,7 @@
       <div v-else-if="!blog" class="text-center text-red-500 text-lg mt-10">⚠️ Blog not found or failed to load.</div>
 
       <div v-else>
+        <!-- Blog Header -->
         <header class="mb-6">
           <h1 class="text-4xl font-extrabold mb-2">{{ blog.title }}</h1>
           <div class="flex flex-wrap gap-4 text-gray-400 text-sm">
@@ -14,14 +15,16 @@
           </div>
         </header>
 
+        <!-- Blog Image -->
         <div v-if="blog.image" class="mb-6 w-full h-96 rounded-xl overflow-hidden">
           <img :src="blog.image" :alt="blog.title" class="w-full h-full object-cover rounded-xl shadow-lg" />
         </div>
 
-
+        <!-- Blog Content -->
         <article class="prose prose-invert max-w-none mb-6" v-html="blog.content" style="white-space: pre-wrap;">
         </article>
 
+        <!-- Blog Tags -->
         <div v-if="blog.tags && blog.tags.length" class="mt-6">
           <span class="font-semibold">Tags:</span>
           <NuxtLink v-for="tag in blog.tags" :key="tag.id" :to="{ path: '/blog', query: { tag: tag.name } }"
@@ -30,23 +33,23 @@
           </NuxtLink>
         </div>
 
+        <!-- Related Blogs -->
+        <RelatedBlogs v-if="blog" :blogId="blog.id" class="mt-12" />
+
       </div>
     </div>
   </div>
 </template>
 
-
-
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import BlogAPI from '@/service/blogs'
+import RelatedBlogs from '@/components/pages/blog/RelatedBlogs.vue'
 
 const route = useRoute()
 const blog = ref<any>(null)
 const loading = ref(true)
-
 
 onMounted(async () => {
   const id = Number(route.params.id)

@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import ProductAPI from '../../../service/products'
+import ProductAPI from '@/service/products'
 
 const products = ref([])
 const loading = ref(true)

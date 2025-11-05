@@ -38,7 +38,7 @@ class ProductAPI {
 
   static async getProductsByCategory(category: string): Promise<Product[]> {
     try {
-      const response = await axios.get<Product[]>(`${BASE_URL}/products/search/`, {
+      const response = await axios.get<Product[]>(`${BASE_URL}/product/search/`, {
         params: { category },
       });
       return response.data;
@@ -59,6 +59,18 @@ class ProductAPI {
       throw error;
     }
   }
+
+
+  static async getRelatedProducts(productId: number): Promise<Product[]> {
+    try {
+      const response = await axios.get<Product[]>(`${BASE_URL}/product/${productId}/related/`)
+      return response.data
+    } catch (error) {
+      console.error(`❌ Error fetching related products for product ${productId}:`, error)
+      throw error
+    }
+  }
+
 }
 
 export default ProductAPI;

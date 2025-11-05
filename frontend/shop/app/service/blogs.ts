@@ -59,6 +59,28 @@ class BlogAPI {
       throw error;
     }
   }
+
+
+  static async getBlogsByTag(tag: string): Promise<Blog[]> {
+    try {
+      const response = await axios.get<Blog[]>(`${BASE_URL}/blog/`, { params: { tag } });
+      return response.data;
+    } catch (error) {
+      console.error('❌ Error fetching blogs by tag:', error);
+      throw error;
+    }
+  }
+
+  static async getRelatedBlogs(blogId: number): Promise<Blog[]> {
+    try {
+      const response = await axios.get<Blog[]>(`${BASE_URL}/blog/${blogId}/related/`);
+      return response.data;
+    } catch (error) {
+      console.error(`❌ Error fetching related blogs for blog ${blogId}:`, error);
+      throw error;
+    }
+  }
+
 }
 
 export default BlogAPI;
