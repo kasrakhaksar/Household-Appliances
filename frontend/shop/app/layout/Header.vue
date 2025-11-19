@@ -29,9 +29,7 @@
               </ul>
             </div>
           </div>
-
         </li>
-
 
         <li>
           <NuxtLink to="/" class="hover:text-blue-200 transition font-semibold">Home</NuxtLink>
@@ -45,51 +43,26 @@
         <li>
           <NuxtLink to="/contactus" class="hover:text-blue-200 transition font-semibold">Contact Us</NuxtLink>
         </li>
+
+        <li>
+          <button v-if="isLoggedIn" @click="confirmLogout"
+            class="flex items-center gap-2 hover:text-blue-200 transition font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+            Logout
+          </button>
+          <NuxtLink v-else to="/auth" class="flex items-center gap-2 hover:text-blue-200 transition font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+            </svg>
+            Login
+          </NuxtLink>
+        </li>
       </ul>
 
-      <div class="flex items-center gap-5">
-        <button class="hover:text-blue-200 transition text-xl">🔍</button>
-        <button class="hover:text-blue-200 transition text-xl">🛒</button>
-
-        <span>
-          <NuxtLink v-if="!isLoggedIn" to="/auth"
-            class="text-blue-400 hover:text-blue-200 text-xl transition cursor-pointer">👤</NuxtLink>
-          <button v-else @click="logout"
-            class="text-red-400 hover:text-red-600 text-xl transition cursor-pointer">🚪</button>
-        </span>
-
-
-        <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-2xl">
-          <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-          <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <div v-if="mobileOpen" class="lg:hidden bg-slate-900 text-white">
-      <ul class="flex flex-col px-6 py-4 gap-4">
-        <li>
-          <NuxtLink to="/" class="hover:text-blue-400 transition">Home</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/aboutus" class="hover:text-blue-400 transition">About Us</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/contactus" class="hover:text-blue-400 transition">Contact Us</NuxtLink>
-        </li>
-        <li v-if="categories.length">
-          <span class="font-semibold mb-2 block">Products</span>
-          <ul class="pl-4 space-y-1">
-            <li v-for="(category, idx) in categories" :key="idx" class="hover:text-blue-400 transition">{{
-              category.label }}</li>
-          </ul>
-        </li>
-      </ul>
     </div>
   </nav>
 </template>
@@ -97,26 +70,57 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { fetchCategories, magaMenuProductRouter } from "../service/header";
+import { fetchCategories, magaMenuProductRouter } from "@/service/header";
+import Swal from 'sweetalert2';
+
+
 
 const categories = ref<any[]>([]);
 const router = useRouter();
 const isLoggedIn = ref(false);
-const mobileOpen = ref(false);
 
 onMounted(async () => {
   categories.value = await fetchCategories();
-  isLoggedIn.value = !!localStorage.getItem("access_token");
+  checkLoginStatus();
 });
+
+const checkLoginStatus = () => {
+  isLoggedIn.value = !!localStorage.getItem("access_token");
+};
 
 const magaMenuGetCategory = (categoryValue: string) => {
   magaMenuProductRouter(router, categoryValue);
+};
+
+const confirmLogout = async () => {
+  const result = await Swal.fire({
+    title: 'Are you sure you want to logout?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Logout',
+    cancelButtonText: 'Cancel',
+    reverseButtons: true
+  });
+
+  if (result.isConfirmed) {
+    logout();
+  }
 };
 
 const logout = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
   isLoggedIn.value = false;
-  router.push("/auth");
+
+  Swal.fire({
+    title: 'Logged out successfully!',
+    icon: 'success',
+    timer: 2000,
+    showConfirmButton: false
+  });
+
+  router.push("/");
 };
 </script>

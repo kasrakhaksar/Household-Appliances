@@ -1,26 +1,49 @@
-<!-- app.vue -->
 <template>
-  <header v-if="!isAuthRoute">
-    <Header />
+  <header>
+    <div>
+      <Header />
+    </div>
   </header>
 
   <main>
     <NuxtPage />
   </main>
 
-  <footer v-if="!isAuthRoute">
+  <footer v-if="!isMobileOrTablet">
     <Footer />
   </footer>
+  <div v-else>
+    <MobileNavigation />
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import Header from '@/layout/Header.vue';
+import MobileNavigation from '@/layout/MobileNavigation.vue';
+import Footer from '@/layout/Footer.vue';
 
-import Footer from './layout/Footer.vue';
-import Header from './layout/Header.vue';
-import { useRoute } from 'vue-router';
+const isMobileOrTablet = ref(false);
 
-const route = useRoute();
+const updateScreen = () => {
+  isMobileOrTablet.value = window.innerWidth < 1024;
+};
 
-const isAuthRoute = computed(() => route.path.startsWith('/auth'));
+onMounted(() => {
+  updateScreen();
+  window.addEventListener('resize', updateScreen);
+});
 
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateScreen);
+});
 </script>
+
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+</style>
