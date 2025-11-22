@@ -1,24 +1,30 @@
 <template>
-  <header>
-    <div>
+  <div v-if="!isAuthRoute">
+    <header>
       <Header />
+    </header>
+
+    <main>
+      <NuxtPage />
+    </main>
+
+    <footer v-if="!isMobileOrTablet">
+      <Footer />
+    </footer>
+    <div v-else>
+      <MobileNavigation />
     </div>
-  </header>
 
-  <main>
-    <NuxtPage />
-  </main>
+  </div>
 
-  <footer v-if="!isMobileOrTablet">
-    <Footer />
-  </footer>
   <div v-else>
-    <MobileNavigation />
+    <NuxtPage />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Header from '@/layout/Header.vue';
 import MobileNavigation from '@/layout/MobileNavigation.vue';
 import Footer from '@/layout/Footer.vue';
@@ -37,6 +43,9 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateScreen);
 });
+
+const route = useRoute();
+const isAuthRoute = computed(() => route.path.startsWith('/auth'));
 </script>
 
 <style>

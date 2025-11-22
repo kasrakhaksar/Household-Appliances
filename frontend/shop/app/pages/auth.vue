@@ -2,7 +2,6 @@
   <div
     class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden relative">
 
-    <!-- Floating circles -->
     <div class="absolute -top-[15%] -left-[10%] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl animate-float">
     </div>
     <div
@@ -13,11 +12,20 @@
       <div class="relative w-full h-full transition-transform duration-1000 transform-style-preserve"
         :class="{ 'rotate-y-180': !isLogin }">
 
-        <!-- Front / Login -->
         <div
           class="card-face front absolute inset-0 flex flex-col lg:flex-row bg-slate-800/70 rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden">
 
-          <!-- Image side (desktop) -->
+          <button @click="$router.push('/')"
+            class="absolute top-4 left-4 z-20 w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-blue-500/20 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 group">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 text-white/70 group-hover:text-white transition-all duration-300 group-hover:scale-110"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </button>
+
           <div class="hidden lg:flex flex-1 relative bg-cover bg-center bg-login">
             <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-800/50"></div>
             <div class="absolute bottom-10 left-10 text-white">
@@ -26,7 +34,6 @@
             </div>
           </div>
 
-          <!-- Form side -->
           <div class="flex-1 flex justify-center items-center">
             <div class="w-full max-w-md p-8 text-white">
               <h2 class="text-3xl font-bold mb-6 text-center">Login</h2>
@@ -44,7 +51,7 @@
               </form>
 
               <p class="text-center text-gray-400 text-sm mt-4">
-                Don’t have an account?
+                Don't have an account?
                 <button class="text-blue-400 hover:underline font-semibold" @click="isLogin = false">Sign Up</button>
               </p>
 
@@ -57,11 +64,20 @@
           </div>
         </div>
 
-        <!-- Back / Signup -->
         <div
           class="card-face back absolute inset-0 flex flex-col lg:flex-row bg-slate-800/70 rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden rotate-y-180">
 
-          <!-- Image side (desktop) -->
+          <button @click="$router.push('/')"
+            class="absolute top-4 left-4 z-20 w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-emerald-500/20 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 group">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 text-white/70 group-hover:text-white transition-all duration-300 group-hover:scale-110"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </button>
+
           <div class="hidden lg:flex flex-1 relative bg-cover bg-center bg-signup">
             <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-800/50"></div>
             <div class="absolute bottom-10 left-10 text-white">
@@ -70,7 +86,6 @@
             </div>
           </div>
 
-          <!-- Form side -->
           <div class="flex-1 flex justify-center items-center">
             <div class="w-full max-w-md p-8 text-white">
               <h2 class="text-3xl font-bold mb-6 text-center">Sign Up</h2>
@@ -131,18 +146,23 @@ const handleLogin = async () => {
     localStorage.setItem('access_token', data.access)
     localStorage.setItem('refresh_token', data.refresh)
 
-    await Swal.fire({
+    Swal.fire({
       icon: 'success',
       title: 'Login Successful!',
       text: 'You are now logged in.',
-      confirmButtonText: 'OK',
+      timer: 2000,
+      showConfirmButton: false,
+      willClose: () => {
+        window.location.href = '/'
+      }
     })
 
-    router.push('/')
   } catch (err: any) {
     errorMessages.value.push(err.message)
   }
 }
+
+
 
 const handleSignup = async () => {
   errorMessages.value = []
@@ -151,18 +171,22 @@ const handleSignup = async () => {
     localStorage.setItem('access_token', data.access)
     localStorage.setItem('refresh_token', data.refresh)
 
-    await Swal.fire({
+    Swal.fire({
       icon: 'success',
       title: 'Signup Successful!',
       text: 'Your account has been created.',
-      confirmButtonText: 'OK',
+      timer: 2000,
+      showConfirmButton: true,
+      willClose: () => {
+        window.location.href = '/'
+      }
     })
 
-    router.push('/')
   } catch (err: any) {
     errorMessages.value.push(err.message)
   }
 }
+
 </script>
 
 <style scoped>
