@@ -1,0 +1,61 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    env_file:
+      - ./backend/shop/.env
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend/shop
+      dockerfile: Dockerfile
+    container_name: django_backend
+    command: >
+      sh -c "./wait-for-it.sh db:3306 -- python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./backend/shop/.env
+    volumes:
+      - ./backend/shop:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend/shop
+      dockerfile: Dockerfile
+    container_name: nuxt_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      API_URL: http://backend:8000
+    volumes:
+      - ./frontend/shop:/app
+    command: >
+      sh -c "npm install && npm run dev"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

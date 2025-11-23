@@ -8,3 +8,4 @@ migrations
 .env
 venv
 .nuxt
+wait-for-it.sh

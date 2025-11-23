@@ -76,6 +76,14 @@ const product = ref<Product | null>(null);
 const loading = ref<boolean>(true);
 const selectedImage = ref<string>('');
 
+
+watch(product, (newProduct) => {
+  if (newProduct) {
+    useHead({ title: newProduct.name });
+  }
+});
+
+
 const allImages = computed((): ProductImage[] => {
   if (!product.value) return [];
 

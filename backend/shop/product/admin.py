@@ -1,14 +1,14 @@
-from django.contrib import admin
+from django.contrib.admin import TabularInline , ModelAdmin , register
 from product.models import Product, ProductImage
 
-class ProductImageInline(admin.TabularInline):
+class ProductImageInline(TabularInline):
     model = ProductImage
     extra = 1
     fields = ['image', 'alt_text']
     readonly_fields = []
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+@register(Product)
+class ProductAdmin(ModelAdmin):
     list_display = ['name', 'brand', 'category', 'price', 'stock', 'is_active', 'created_at']
     search_fields = ['name', 'brand', 'category']
     list_filter = ['category', 'is_active', 'brand']
