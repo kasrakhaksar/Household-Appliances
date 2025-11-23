@@ -1,10 +1,8 @@
 <template>
   <section class="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white py-24">
 
-    <!-- Decorative Glow -->
     <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_70%)]"></div>
 
-    <!-- Hero Section -->
     <div class="container mx-auto px-6 text-center relative z-10">
       <h1 class="text-6xl font-extrabold mb-6 tracking-tight">
         About <span class="text-blue-400">Us</span>
@@ -15,10 +13,8 @@
       </p>
     </div>
 
-    <!-- Feature Cards -->
     <div class="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center relative z-10">
 
-      <!-- Card 1 -->
       <div class="group relative bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 
                   rounded-2xl shadow-lg p-10 hover:-translate-y-3 transition-all duration-300 
                   hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] animate-floating">
@@ -34,7 +30,6 @@
         </p>
       </div>
 
-      <!-- Card 2 -->
       <div class="group relative bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 
                   rounded-2xl shadow-lg p-10 hover:-translate-y-3 transition-all duration-300 
                   hover:shadow-[0_0_40px_rgba(250,204,21,0.4)] animate-floating"
@@ -51,7 +46,6 @@
         </p>
       </div>
 
-      <!-- Card 3 -->
       <div class="group relative bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 
                   rounded-2xl shadow-lg p-10 hover:-translate-y-3 transition-all duration-300 
                   hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] animate-floating"
@@ -70,7 +64,6 @@
 
     </div>
 
-    <!-- Bottom Section -->
     <div class="container mx-auto px-6 mt-24 text-center relative z-10">
       <div class="max-w-3xl mx-auto">
         <h2 class="text-4xl font-bold text-white mb-6">Our Mission</h2>
@@ -84,10 +77,14 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'AboutUs',
-};
+<script setup lang="ts">
+
+
+useHead({
+  title: 'About Us'
+})
+
+
 </script>
 
 <style scoped>

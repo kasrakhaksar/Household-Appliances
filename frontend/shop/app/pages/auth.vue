@@ -127,11 +127,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Swal from 'sweetalert2'
-import { useRouter } from 'vue-router'
 import { login, signup } from '@/service/auth'
 import CustomButton from '@/components/common/CustomButton.vue'
 
-const router = useRouter()
+
+useHead({
+  title: 'Authentication'
+})
+
+
 
 const isLogin = ref(true)
 const email = ref('')

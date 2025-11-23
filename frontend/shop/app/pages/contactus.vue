@@ -59,6 +59,12 @@
 import { reactive, ref } from 'vue'
 import CustomButton from '@/components/common/CustomButton.vue'
 
+
+useHead({
+  title: 'Contact Us'
+})
+
+
 interface ContactForm {
     email: string
     subject: string

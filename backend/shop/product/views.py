@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.core.cache import cache
 from django_redis import get_redis_connection
+from django.db.models import Q
 from product.models import Product
 from product.serializers import ProductSerializer, ProductSearchSerializer
 import json
@@ -66,9 +67,47 @@ class ProductViewSet(ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='search')
     def search(self, request):
-        category_search = request.query_params.get('category', None)
-        products = Product.objects.filter(
-            is_active=True, category=category_search)
+        category = request.query_params.get('category')
+        search = request.query_params.get('search')
+        brand = request.query_params.get('brand')
+
+        products = Product.objects.filter(is_active=True)
+
+        if category:
+            products = products.filter(category=category)
+
+        if search:
+            products = products.filter(
+                Q(name__icontains=search) |
+                Q(brand__icontains=search) |
+                Q(description__icontains=search)
+            )
+
+        if brand:
+            products = products.filter(brand__iexact=brand)
+
+        min_price = request.query_params.get('minPrice')
+        max_price = request.query_params.get('maxPrice')
+        if min_price:
+            try:
+                products = products.filter(price__gte=float(min_price))
+            except (ValueError, TypeError):
+                pass
+        if max_price:
+            try:
+                products = products.filter(price__lte=float(max_price))
+            except (ValueError, TypeError):
+                pass
+
+        stock_status = request.query_params.get('stockStatus')
+        if stock_status:
+            if stock_status == 'in-stock':
+                products = products.filter(stock__gt=0)
+            elif stock_status == 'low-stock':
+                products = products.filter(stock__gt=0, stock__lt=5)
+            elif stock_status == 'out-of-stock':
+                products = products.filter(stock=0)
+
         serializer = ProductSearchSerializer(
             products, many=True, context={'request': request})
         return Response(serializer.data)

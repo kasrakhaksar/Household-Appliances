@@ -2,17 +2,32 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8000';
 
+export interface ProductImage {
+  id: number;
+  url: string;
+  alt_text: string;
+}
+
 export interface Product {
   id: number;
   name: string;
-  price: number;
-  discount_price?: number;
+  price: string;
+  discount_price?: string;
   stock: number;
   brand?: string;
   category: string;
   description?: string;
   image?: string;
+  images?: ProductImage[];
+  is_active?: boolean;
+  created_at?: string;
+  updated_at?: string;
   [key: string]: any;
+}
+
+export interface Category {
+  label: string;
+  value: string;
 }
 
 class ProductAPI {
@@ -60,7 +75,6 @@ class ProductAPI {
     }
   }
 
-
   static async getRelatedProducts(productId: number): Promise<Product[]> {
     try {
       const response = await axios.get<Product[]>(`${BASE_URL}/product/${productId}/related/`)
@@ -71,6 +85,34 @@ class ProductAPI {
     }
   }
 
+  static async getCategories(): Promise<Category[]> {
+    try {
+      const response = await axios.get<Category[]>(`${BASE_URL}/product/categories/`);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Error fetching categories:', error);
+      throw error;
+    }
+  }
+
+  static async searchProducts(params: {
+    search?: string;
+    category?: string;
+    brand?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    stockStatus?: string;
+  }): Promise<Product[]> {
+    try {
+      const response = await axios.get<Product[]>(`${BASE_URL}/product/search/`, {
+        params,
+      });
+      return response.data;
+    } catch (error) {
+      console.error('❌ Error searching products:', error);
+      throw error;
+    }
+  }
 }
 
 export default ProductAPI;
